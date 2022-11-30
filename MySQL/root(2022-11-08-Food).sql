@@ -12,10 +12,16 @@ work 테이블은 보통 데이터 칼럼으로 PK 를 설정하기가 어렵다
 이 때 실제 데이터와는 관계없이 PK 만을 위하여 칼럼을 추가하고 
 이 칼럼의 데이터 type 을 BIGINT 로 설정하고 AUTO_INCREMENT 를 설정하여 
 데이터를 INSERT 할 때 자동으로 증가된 일련번호 값이 포함되도록 하는 것이다.
-만약 튜플을 삭제할 경우 해당하는 일련번호의 데이터는 공백으로 남게 된다.
+만약 튜플을 삭제할 경우, 해당하는 일련번호의 데이터는 공백으로 남게 된다.
+*/
+/*
+IF NOT EXISTS : 
+CREATE TABLE 을 실행할 때 table 이 이미 있으면
+오류가 발생하므로 오류를 방지하는 목적으로 사용하는 키워드
+MySQL, MariaDB 에서만 사용가능한 키워드
 */
 
-CREATE TABLE tbl_todayV2(
+CREATE TABLE IF NOT EXISTS tbl_todayV2(
 t_seq	BIGINT	AUTO_INCREMENT	PRIMARY KEY,
 t_date	VARCHAR(10)	NOT NULL,
 t_time	VARCHAR(14)	NOT NULL,	
@@ -26,4 +32,9 @@ t_cal	INT
 
 INSERT INTO tbl_todayV2(t_date, t_time, t_content, t_qty, t_cal) VALUES ('2022-11-08', '14:20:00.000', '빅맥10000', 1, 1200);
 
-SELECT * FROM tbl_todayV2;
+SELECT * FROM tbl_todayV7;
+
+USE foodDB;
+DESC tbl_todayV7;
+
+
